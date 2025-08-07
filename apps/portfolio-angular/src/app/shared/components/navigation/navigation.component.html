@@ -1,0 +1,69 @@
+<nav class="fixed top-0 w-full bg-white/80 backdrop-blur-lg border-b border-gray-200/50 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+      
+      <!-- Logo -->
+      <div class="flex items-center">
+        <div class="relative">
+          <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+            <span class="text-white font-bold text-lg">KM</span>
+          </div>
+        </div>
+        <div class="ml-3">
+          <div class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Kevin Maldonado
+          </div>
+          <div class="text-xs text-gray-500">Full Stack Developer</div>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        @for (item of navigationItems; track item.href) {
+          <a [href]="item.href"
+             class="relative group px-3 py-2 text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium"
+             (click)="scrollToSection($event, item.href)">
+            {{ item.label }}
+            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></div>
+          </a>
+        }
+        
+        <!-- CTA Button -->
+        <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300">
+          Me Contacter
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        (click)="toggleMobileMenu()"
+        class="md:hidden relative w-8 h-8 flex flex-col justify-center items-center space-y-1 group">
+        <span [class]="mobileMenuOpen() ? 'rotate-45 translate-y-2' : ''" 
+              class="w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+        <span [class]="mobileMenuOpen() ? 'opacity-0' : ''" 
+              class="w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+        <span [class]="mobileMenuOpen() ? '-rotate-45 -translate-y-2' : ''" 
+              class="w-6 h-0.5 bg-gray-700 transition-all duration-300"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div [class]="mobileMenuOpen() ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'" 
+         class="md:hidden overflow-hidden transition-all duration-300 ease-in-out">
+      <div class="py-4 space-y-2">
+        @for (item of navigationItems; track item.href) {
+          <a [href]="item.href"
+             class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded-lg transition-all duration-200"
+             (click)="scrollToSection($event, item.href); closeMobileMenu()">
+            {{ item.label }}
+          </a>
+        }
+        <div class="px-4 pt-4">
+          <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg hover:shadow-lg transition-all duration-300">
+            Me Contacter
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

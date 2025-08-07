@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+
+// Components
+import { NavigationComponent } from './shared/components/navigation/navigation.component';
+import { HeroSectionComponent } from './features/hero/hero-section.component';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
+  imports: [
+    RouterModule,
+    NavigationComponent,
+    HeroSectionComponent,
+  ],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',

@@ -5,13 +5,14 @@ import { RouterModule } from '@angular/router';
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
 import { HeroSectionComponent } from './features/hero/hero-section.component';
 import { AboutSectionComponent } from './features/about/about-section.component';
-
+import { ExperienceSectionComponent } from './features/experience/experience-section.component';
 @Component({
   imports: [
     RouterModule,
     NavigationComponent,
     HeroSectionComponent,
     AboutSectionComponent,
+    ExperienceSectionComponent,
   ],
   selector: 'app-root',
   templateUrl: './app.html',

@@ -1,0 +1,14 @@
+<!-- Bottom Stats Section -->
+<div class="mt-20 text-center">
+  <div [class]="statsService.gridClasses() + ' max-w-4xl mx-auto'">
+    @for (stat of statsService.displayItems(); track stat.key) {
+      <div class="group cursor-default">
+        <div class="text-3xl md:text-4xl font-bold bg-gradient-to-r bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300"
+             [class]="stat.colorClass">
+          {{ stat.value }}{{ stat.showPlus ? '+' : '' }}
+        </div>
+        <div class="text-gray-600 text-sm">{{ stat.label }}</div>
+      </div>
+    }
+  </div>
+</div>

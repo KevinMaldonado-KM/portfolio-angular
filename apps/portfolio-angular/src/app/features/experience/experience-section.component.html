@@ -1,0 +1,182 @@
+<section id="experience" class="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        Expérience <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Professionnelle</span>
+      </h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8"></div>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Mon parcours professionnel à travers différents défis techniques et projets innovants
+      </p>
+    </div>
+
+    <!-- Experience Cards -->
+    <div class="max-w-5xl mx-auto space-y-8">
+      @for (exp of experienceService.allExperiences(); track exp.company + exp.period; let i = $index) {
+        <div class="group">
+          
+          <!-- Experience Card -->
+          <div class="grid md:grid-cols-12 gap-6 items-start">
+            
+            <!-- Left Column: Company Info (Desktop) -->
+            <div class="hidden md:block md:col-span-4" 
+                 [class.md:text-right]="i % 2 === 0"
+                 [class.md:order-2]="i % 2 === 1">
+              <div class="relative bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-md border-2 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-gray-200">
+                
+                <!-- Timeline connection point -->
+                <div class="absolute top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-gradient-to-r"
+                     [class]="experienceService.getTypeColor(exp.type) + ' ' + (i % 2 === 0 ? '-left-1.5' : '-right-1.5')">
+                </div>
+                
+                <div class="flex items-center gap-4 mb-4"
+                     [class.justify-end]="i % 2 === 0">
+                  <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white flex-shrink-0 bg-gradient-to-r"
+                       [class]="experienceService.getTypeColor(exp.type)">
+                    <i [class]="experienceService.getTypeIcon(exp.type)"></i>
+                  </div>
+                  <div [class.text-right]="i % 2 === 0">
+                    <h4 class="font-bold text-lg text-gray-900">{{ exp.company }}</h4>
+                    <p class="text-sm text-gray-600 flex items-center gap-1"
+                       [class.justify-end]="i % 2 === 0">
+                      <i class="fas fa-map-marker-alt text-xs"></i>
+                      {{ exp.location }}
+                    </p>
+                  </div>
+                </div>
+                
+                <div class="space-y-3">
+                  <div class="flex items-center gap-2 text-sm text-gray-600"
+                       [class.justify-end]="i % 2 === 0">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>{{ exp.period }}</span>
+                  </div>
+                  
+                  <div class="flex items-center gap-2"
+                       [class.justify-end]="i % 2 === 0">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r"
+                          [class]="experienceService.getTypeColor(exp.type)">
+                      {{ experienceService.getTypeLabel(exp.type) }}
+                    </span>
+                    @if (exp.current) {
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5"></span>
+                        En cours
+                      </span>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="md:col-span-8"
+                 [class.md:order-1]="i % 2 === 1">
+              <div class="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 overflow-hidden">
+                
+                <!-- Decorative gradient accent -->
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r"
+                     [class]="experienceService.getTypeColor(exp.type)">
+                </div>
+                
+                <!-- Mobile timeline indicator -->
+                <div class="md:hidden absolute -left-4 top-8 w-3 h-3 rounded-full bg-gradient-to-r"
+                     [class]="experienceService.getTypeColor(exp.type)">
+                </div>
+                
+                <!-- Mobile Header -->
+                <div class="md:hidden mb-6">
+                  <div class="flex items-center gap-3 mb-3 flex-wrap">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white bg-gradient-to-r"
+                         [class]="experienceService.getTypeColor(exp.type)">
+                      <i [class]="experienceService.getTypeIcon(exp.type)"></i>
+                    </div>
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r"
+                          [class]="experienceService.getTypeColor(exp.type)">
+                      {{ experienceService.getTypeLabel(exp.type) }}
+                    </span>
+                    @if (exp.current) {
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5"></span>
+                        En cours
+                      </span>
+                    }
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-1">{{ exp.position }}</h3>
+                  <div class="text-lg font-semibold text-blue-600 mb-2">{{ exp.company }}</div>
+                  <div class="flex items-center gap-4 text-gray-500 text-sm flex-wrap">
+                    <div class="flex items-center gap-1">
+                      <i class="fas fa-map-marker-alt"></i>
+                      {{ exp.location }}
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i class="fas fa-calendar-alt"></i>
+                      {{ exp.period }}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Desktop Header -->
+                <div class="hidden md:block mb-6">
+                  <h3 class="text-2xl font-bold text-gray-900 mb-2">{{ exp.position }}</h3>
+                </div>
+
+                <!-- Technologies -->
+                @if (exp.technologies && exp.technologies.length > 0) {
+                  <div class="mb-6">
+                    <h4 class="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                      <i class="fas fa-tools mr-2 text-blue-500"></i>
+                      Technologies utilisées
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                      @for (tech of exp.technologies; track tech) {
+                        <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gradient-to-r from-blue-50 to-purple-50 text-gray-700 border border-blue-200 hover:border-blue-300 transition-colors duration-200">
+                          {{ tech }}
+                        </span>
+                      }
+                    </div>
+                  </div>
+                }
+
+                <!-- Achievements -->
+                <div class="space-y-4">
+                  <h4 class="text-lg font-semibold text-gray-900 flex items-center">
+                    <i class="fas fa-trophy mr-2 text-yellow-500"></i>
+                    Réalisations clés
+                  </h4>
+                  @for (achievement of exp.achievements; track achievement) {
+                    <div class="flex items-start group/achievement">
+                      <div class="flex-shrink-0 w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2.5 mr-4 group-hover/achievement:scale-125 transition-transform duration-200"></div>
+                      <p class="text-gray-700 leading-relaxed">{{ achievement }}</p>
+                    </div>
+                  }
+                </div>
+
+                <!-- Links -->
+                @if (exp.links && exp.links.length > 0) {
+                  <div class="mt-6 pt-6 border-t border-gray-100">
+                    <div class="flex flex-wrap gap-3">
+                      @for (link of exp.links; track link.label) {
+                        <a [href]="link.url" 
+                           target="_blank"
+                           class="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-all duration-200 hover:scale-105 hover:-translate-y-0.5">
+                          <i [class]="link.icon || 'fas fa-external-link-alt'" class="mr-2"></i>
+                          {{ link.label }}
+                        </a>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Statistics Component -->
+    <app-experience-stats />
+  </div>
+</section>

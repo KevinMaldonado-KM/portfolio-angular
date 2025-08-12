@@ -1,0 +1,149 @@
+/* Experience Section Styles */
+
+:host {
+  display: block;
+}
+
+/* Timeline animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Experience items staggered animation */
+.group {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.group:nth-child(1) { animation-delay: 0.1s; }
+.group:nth-child(2) { animation-delay: 0.3s; }
+.group:nth-child(3) { animation-delay: 0.5s; }
+.group:nth-child(4) { animation-delay: 0.7s; }
+
+/* Card hover effects */
+.bg-white {
+  transition: all 0.3s ease;
+}
+
+.bg-white:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Technology tags hover */
+.border-blue-200:hover {
+  border-color: rgb(147 197 253);
+  transform: translateY(-1px);
+}
+
+/* Achievement bullet animations */
+.group\/achievement:hover .group-hover\/achievement\:scale-125 {
+  transform: scale(1.25);
+}
+
+/* Link hover effects */
+a.hover\:scale-105:hover {
+  transform: scale(1.05) translateY(-2px);
+}
+
+/* Company info cards with integrated timeline */
+.border-l-4,
+.border-r-4 {
+  position: relative;
+}
+
+/* Timeline connection styling */
+.border-l-4::before,
+.border-r-4::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #d1d5db);
+}
+
+.border-l-4::before {
+  left: -24px;
+}
+
+.border-r-4::before {
+  right: -24px;
+  background: linear-gradient(to left, transparent, #d1d5db);
+}
+
+/* Enhanced visual hierarchy */
+.section-header {
+  position: relative;
+}
+
+/* Decorative accent bars */
+.h-1.bg-gradient-to-r {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Statistics animation */
+.group.cursor-default:hover {
+  transform: translateY(-2px);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .experience-card {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+  }
+  
+  /* Mobile timeline indicator */
+  .md\:hidden.-left-4 {
+    position: relative;
+  }
+  
+  .md\:hidden.-left-4::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.75rem;
+    height: 1px;
+    background: #d1d5db;
+  }
+}
+
+/* Print styles */
+@media print {
+  .experience-card {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+  
+  .hover\:shadow-xl:hover {
+    box-shadow: none;
+  }
+  
+  .hover\:-translate-y-1:hover {
+    transform: none;
+  }
+}
+
+/* Focus states for accessibility */
+a:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 0.375rem;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition-property: transform, box-shadow, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

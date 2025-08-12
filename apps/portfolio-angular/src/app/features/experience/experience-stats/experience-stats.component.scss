@@ -1,0 +1,44 @@
+// Experience Stats Component Styles
+// Styles spécifiques pour le composant des statistiques d'expérience
+
+.group {
+  transition-property: all;
+  transition-duration: 300ms;
+  
+  &:hover {
+    transform: scale(1.02); // Slight scale on hover for the group
+    
+    .text-3xl, .md\:text-4xl {
+      transform: scale(1.10);
+    }
+  }
+}
+
+// Animation d'apparition des statistiques
+.group {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+  
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{($i - 1) * 0.1}s;
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive grid handling
+.max-w-4xl {
+  margin-left: auto;
+  margin-right: auto;
+}

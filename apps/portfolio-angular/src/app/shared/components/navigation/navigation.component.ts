@@ -13,6 +13,7 @@ export class NavigationComponent {
   navigationItems = [
     { label: 'Accueil', href: '#hero' },
     { label: 'À Propos', href: '#about' },
+    { label: 'Expérience', href: '#experience' },
     { label: 'Compétences', href: '#skills' },
     { label: 'Projets', href: '#projects' },
     { label: 'Contact', href: '#contact' }

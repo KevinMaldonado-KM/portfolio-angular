@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, computed } from '@angular/core';
+import { AboutService } from '../../core/services/about.service';
 
 @Component({
   selector: 'app-about-section',
@@ -9,33 +10,27 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class AboutSectionComponent {
   
-quickStats = [
-  { value: '1+', label: 'Années d\'expérience' },
-  { value: '10+', label: 'Projets scolaires/professionnels' },
-  { value: '15+', label: 'Technologies maîtrisées' },
-  { value: '1', label: 'Certifications obtenues' }
-];
+  // Injection du service avec la nouvelle syntaxe inject()
+  private readonly aboutService = inject(AboutService);
 
-coreValues = [
-  {
-    icon: 'fas fa-cogs',
-    label: 'Rigueur',
-    description: 'Qualité et robustesse du code'
-  },
-  {
-    icon: 'fas fa-rocket',
-    label: 'Adaptabilité',
-    description: 'Montée en compétences rapide'
-  },
-  {
-    icon: 'fas fa-handshake',
-    label: 'Communication',
-    description: 'Travail d\'équipe efficace'
-  },
-  {
-    icon: 'fas fa-book',
-    label: 'Curiosité',
-    description: 'Veille technologique continue'
+  // Exposition des signaux computed pour le template
+  readonly profile = this.aboutService.profile;
+  readonly personalInfo = this.aboutService.personalInfo;
+  readonly story = this.aboutService.story;
+  readonly quickStats = this.aboutService.quickStats;
+  readonly coreValues = this.aboutService.coreValues;
+  readonly callToAction = this.aboutService.callToAction;
+  readonly fullName = this.aboutService.fullName;
+
+  // Computed pour des données spécifiques au composant si nécessaire
+  readonly avatarInitials = computed(() => this.personalInfo().avatar.initials);
+  readonly hasAvatar = computed(() => !!this.personalInfo().avatar.imageUrl);
+  readonly statisticsTotal = this.aboutService.statisticsTotal;
+
+  /**
+   * Action du call to action
+   */
+  onCallToAction(): void {
+    this.aboutService.handleCallToAction();
   }
-];
 }

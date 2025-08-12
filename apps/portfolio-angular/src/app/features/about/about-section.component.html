@@ -19,14 +19,18 @@
           <div class="flex items-start space-x-6">
             <div class="relative">
               <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                <span class="text-2xl font-bold text-white">KM</span>
+                @if (hasAvatar()) {
+                  <img [src]="personalInfo().avatar.imageUrl" [alt]="fullName()" class="w-full h-full rounded-xl object-cover">
+                } @else {
+                  <span class="text-2xl font-bold text-white">{{ avatarInitials() }}</span>
+                }
               </div>
             </div>
             <div class="flex-1">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">Kevin Maldonado</h3>
-              <p class="text-blue-600 font-semibold mb-3">Développeur Full Stack</p>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">{{ personalInfo().name }}</h3>
+              <p class="text-blue-600 font-semibold mb-3">{{ personalInfo().title }}</p>
               <p class="text-gray-600 leading-relaxed">
-                Ingénieur logiciel full-stack, passionné par l’optimisation et la création d’applications performantes, avec une solide expérience en environnements .NET, Java et Angular.
+                {{ personalInfo().description }}
               </p>
             </div>
           </div>
@@ -34,7 +38,7 @@
 
         <!-- Quick Stats -->
         <div class="grid grid-cols-2 gap-4">
-          @for (stat of quickStats; track stat.label) {
+          @for (stat of quickStats(); track stat.label) {
             <div class="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 group">
               <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
                 {{ stat.value }}
@@ -52,20 +56,12 @@
         <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300">
           <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
             <div class="w-2 h-6 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full mr-3"></div>
-            Mon Histoire
+            {{ story().title }}
           </h3>
           <div class="space-y-4 text-gray-600 leading-relaxed">
-            <p>
-              Ingénieur logiciel spécialisé en développement full-stack, je conçois des applications performantes et fiables, du
-              back-end au front-end.
-              Mon parcours m’a permis de travailler sur des projets variés en environnement .NET, Java et Angular, allant
-              d’applications scientifiques
-              à des systèmes temps réel connectés.
-            </p>
-            <p>
-              Curieux et adaptable, j’aime relever des défis techniques complexes, apprendre rapidement de nouvelles technologies
-              et travailler en équipe pour transformer des besoins fonctionnels en solutions concrètes et maintenables.
-            </p>
+            @for (paragraph of story().paragraphs; track $index) {
+              <p>{{ paragraph }}</p>
+            }
           </div>
         </div>
 
@@ -76,7 +72,7 @@
             Mes Valeurs
           </h3>
           <div class="grid grid-cols-2 gap-4">
-            @for (value of coreValues; track value.label) {
+            @for (value of coreValues(); track value.label) {
               <div class="text-center group">
                 <div class="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
                   <i [class]="value.icon + ' text-blue-600'"></i>
@@ -93,12 +89,14 @@
     <!-- Call to Action -->
     <div class="text-center mt-16">
       <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
-        <h3 class="text-2xl font-bold mb-4">Travaillons Ensemble !</h3>
+        <h3 class="text-2xl font-bold mb-4">{{ callToAction().title }}</h3>
         <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
-          Ouvert aux nouvelles opportunités pour mettre mes compétences au service de projets innovants et dynamiques.
+          {{ callToAction().description }}
         </p>
-        <button class="bg-white text-blue-600 font-semibold px-8 py-3 rounded-full hover:bg-blue-50 hover:scale-105 transition-all duration-300 shadow-lg">
-          Me Contacter
+        <button 
+          class="bg-white text-blue-600 font-semibold px-8 py-3 rounded-full hover:bg-blue-50 hover:scale-105 transition-all duration-300 shadow-lg"
+          (click)="onCallToAction()">
+          {{ callToAction().buttonText }}
         </button>
       </div>
     </div>

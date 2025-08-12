@@ -18,26 +18,8 @@ export const ABOUT_PROFILE_DATA: AboutProfile = {
     ]
   },
   quickStats: [
-    { 
-      value: '1+', 
-      label: 'Années d\'expérience',
-      description: 'Expérience professionnelle continue'
-    },
-    { 
-      value: '10+', 
-      label: 'Projets scolaires/professionnels',
-      description: 'Projets réalisés avec succès'
-    },
-    { 
-      value: '15+', 
-      label: 'Technologies maîtrisées',
-      description: 'Stack technique diversifiée'
-    },
-    { 
-      value: '1', 
-      label: 'Certifications obtenues',
-      description: 'Formation continue'
-    }
+    // Les statistiques sont maintenant gérées par AboutStatsService
+    // Ce tableau peut être vide ou servir de fallback
   ],
   coreValues: [
     {

@@ -1,11 +1,16 @@
-import { Injectable, signal, computed } from '@angular/core';
-import { AboutProfile, PersonalInfo, QuickStat, CoreValue } from '../models/about.model';
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { AboutProfile, PersonalInfo, CoreValue } from '../models/about.model';
+import { AboutStat } from '../models/about-stats.model';
 import { ABOUT_PROFILE_DATA } from '../data/about.data';
+import { AboutStatsService } from './about-stats.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AboutService {
+  
+  // Injection du service des statistiques About
+  private readonly aboutStatsService = inject(AboutStatsService);
   
   // Signal pour les données reactives
   private readonly aboutProfile = signal<AboutProfile>(ABOUT_PROFILE_DATA);
@@ -14,9 +19,13 @@ export class AboutService {
   readonly profile = computed(() => this.aboutProfile());
   readonly personalInfo = computed(() => this.aboutProfile().personalInfo);
   readonly story = computed(() => this.aboutProfile().story);
-  readonly quickStats = computed(() => this.aboutProfile().quickStats);
   readonly coreValues = computed(() => this.aboutProfile().coreValues);
   readonly callToAction = computed(() => this.aboutProfile().callToAction);
+  
+  // Statistiques rapides - directement depuis AboutStatsService
+  readonly quickStats = computed((): AboutStat[] => {
+    return this.aboutStatsService.stats();
+  });
   
   // Computed pour des données dérivées
   readonly fullName = computed(() => this.personalInfo().name);
@@ -54,16 +63,6 @@ export class AboutService {
     this.aboutProfile.update(current => ({
       ...current,
       personalInfo: { ...current.personalInfo, ...info }
-    }));
-  }
-
-  /**
-   * Ajoute une statistique rapide
-   */
-  addQuickStat(stat: QuickStat): void {
-    this.aboutProfile.update(current => ({
-      ...current,
-      quickStats: [...current.quickStats, stat]
     }));
   }
 

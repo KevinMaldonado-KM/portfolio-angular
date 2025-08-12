@@ -1,7 +1,9 @@
+import { AboutStat } from './about-stats.model';
+
 export interface AboutProfile {
   personalInfo: PersonalInfo;
   story: Story;
-  quickStats: QuickStat[];
+  quickStats: AboutStat[];
   coreValues: CoreValue[];
   callToAction: CallToAction;
 }
@@ -19,12 +21,6 @@ export interface PersonalInfo {
 export interface Story {
   title: string;
   paragraphs: string[];
-}
-
-export interface QuickStat {
-  value: string;
-  label: string;
-  description?: string;
 }
 
 export interface CoreValue {

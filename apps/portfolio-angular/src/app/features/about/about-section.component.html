@@ -1,0 +1,106 @@
+<section id="about" class="py-20 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        À Propos de <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Moi</span>
+      </h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8"></div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      
+      <!-- Left: Personal Info -->
+      <div class="space-y-8">
+        
+        <!-- Profile Card -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300">
+          <div class="flex items-start space-x-6">
+            <div class="relative">
+              <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                <span class="text-2xl font-bold text-white">KM</span>
+              </div>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Kevin Maldonado</h3>
+              <p class="text-blue-600 font-semibold mb-3">Développeur Full Stack</p>
+              <p class="text-gray-600 leading-relaxed">
+                Ingénieur logiciel full-stack, passionné par l’optimisation et la création d’applications performantes, avec une solide expérience en environnements .NET, Java et Angular.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-2 gap-4">
+          @for (stat of quickStats; track stat.label) {
+            <div class="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 group">
+              <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                {{ stat.value }}
+              </div>
+              <div class="text-gray-600 text-sm font-medium">{{ stat.label }}</div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Right: Story & Values -->
+      <div class="space-y-8">
+        
+        <!-- My Story -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300">
+          <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+            <div class="w-2 h-6 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full mr-3"></div>
+            Mon Histoire
+          </h3>
+          <div class="space-y-4 text-gray-600 leading-relaxed">
+            <p>
+              Ingénieur logiciel spécialisé en développement full-stack, je conçois des applications performantes et fiables, du
+              back-end au front-end.
+              Mon parcours m’a permis de travailler sur des projets variés en environnement .NET, Java et Angular, allant
+              d’applications scientifiques
+              à des systèmes temps réel connectés.
+            </p>
+            <p>
+              Curieux et adaptable, j’aime relever des défis techniques complexes, apprendre rapidement de nouvelles technologies
+              et travailler en équipe pour transformer des besoins fonctionnels en solutions concrètes et maintenables.
+            </p>
+          </div>
+        </div>
+
+        <!-- Core Values -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300">
+          <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+            <div class="w-2 h-6 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full mr-3"></div>
+            Mes Valeurs
+          </h3>
+          <div class="grid grid-cols-2 gap-4">
+            @for (value of coreValues; track value.label) {
+              <div class="text-center group">
+                <div class="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <i [class]="value.icon + ' text-blue-600'"></i>
+                </div>
+                <div class="text-sm font-semibold text-gray-800">{{ value.label }}</div>
+                <div class="text-xs text-gray-500">{{ value.description }}</div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-16">
+      <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+        <h3 class="text-2xl font-bold mb-4">Travaillons Ensemble !</h3>
+        <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
+          Ouvert aux nouvelles opportunités pour mettre mes compétences au service de projets innovants et dynamiques.
+        </p>
+        <button class="bg-white text-blue-600 font-semibold px-8 py-3 rounded-full hover:bg-blue-50 hover:scale-105 transition-all duration-300 shadow-lg">
+          Me Contacter
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

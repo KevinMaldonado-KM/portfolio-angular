@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, computed } from '@angular/core';
+import { HeroService } from '../../core/services/hero.service';
 
 @Component({
   selector: 'app-hero-section',
@@ -9,23 +10,23 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class HeroSectionComponent {
   
-  highlightedSkills = [
-    'C# / ASP.NET Core', 'Java / Spring Boot', 'Angular', 'Docker & CI/CD', 'HTML/CSS', 'JavaScript', 'TypeScript'
-  ];
+  // Injection du service avec la nouvelle syntaxe inject()
+  private readonly heroService = inject(HeroService);
 
+  // Exposition des signaux computed pour le template
+  readonly profile = this.heroService.profile;
+  readonly socialLinks = this.heroService.social;
+  readonly highlightedSkills = this.heroService.skillNames;
+  readonly fullName = this.heroService.fullName;
+
+  // Computed pour des données spécifiques au composant si nécessaire
+  readonly avatarInitials = computed(() => this.profile().avatar.initials);
+  readonly hasAvatar = computed(() => !!this.profile().avatar.imageUrl);
+
+  /**
+   * Télécharge le CV via le service
+   */
   downloadCV(): void {
-    // Chemin vers le fichier CV dans le dossier public
-    const cvUrl = '/file/CV_Kevin_Maldonado_2025.pdf';
-    
-    // Créer un lien temporaire pour télécharger le fichier
-    const link = document.createElement('a');
-    link.href = cvUrl;
-    link.download = 'CV_Kevin_Maldonado_2025.pdf';
-    link.target = '_blank';
-    
-    // Ajouter le lien au DOM, le cliquer, puis le supprimer
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    this.heroService.downloadCV();
   }
 }

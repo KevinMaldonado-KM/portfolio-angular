@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 export class HeroSectionComponent {
   
   highlightedSkills = [
-    'LOREM', 'LOREM', 'LOREM', 'LOREM', 'LOREM', 'LOREM', 'LOREM'
+    'C# / ASP.NET Core', 'Java / Spring Boot', 'Angular', 'Docker & CI/CD', 'HTML/CSS', 'JavaScript', 'TypeScript'
   ];
 
   downloadCV(): void {

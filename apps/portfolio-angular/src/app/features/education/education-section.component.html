@@ -1,0 +1,112 @@
+<!-- ===== SECTION ÉDUCATION MODERNE ===== -->
+<section id="education" 
+         class="relative min-h-screen py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30">
+  
+  <!-- Background Animation -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-200/20 rounded-full mix-blend-multiply animate-blob"></div>
+    <div class="absolute top-1/3 right-1/4 w-72 h-72 bg-purple-200/20 rounded-full mix-blend-multiply animate-blob animation-delay-2000"></div>
+    <div class="absolute bottom-1/4 left-1/3 w-72 h-72 bg-pink-200/20 rounded-full mix-blend-multiply animate-blob animation-delay-4000"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- ===== HERO HEADER ===== -->
+    <header class="text-center mb-20">
+      <div class="space-y-8">
+        
+    <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Formation <span
+                class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Académique</span>
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8"></div>
+    </div>
+        
+        <!-- ===== STATS GRID ===== -->
+        <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mt-16">
+          @for (stat of stats(); track stat.label; let i = $index) {
+            <div class="stat-card bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-soft text-center hover:shadow-medium transition-all duration-300 hover:-translate-y-1">
+              <div class="w-12 h-12 mx-auto mb-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white">
+                <i [class]="stat.icon" class="text-lg"></i>
+              </div>
+              <div class="text-2xl font-bold text-gray-900 mb-1">{{ stat.value }}</div>
+              <div class="text-sm text-gray-600 font-medium uppercase tracking-wide">{{ stat.label }}</div>
+            </div>
+          }
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== TIMELINE SECTION ===== -->
+    <section class="mb-20">
+      <!-- ===== TIMELINE CONTAINER ===== -->
+      <div class="relative max-w-4xl mx-auto">
+        <!-- Ligne de progression -->
+        <div class="absolute left-8 top-0 bottom-0 w-1 bg-gray-200 rounded-full overflow-hidden">
+          <div class="w-full bg-gradient-to-b from-blue-600 to-purple-600 rounded-full transition-all duration-700 ease-out" 
+               [style.height]="scrollProgress() + '%'"></div>
+        </div>
+
+        <!-- Items de la timeline -->
+        <div class="space-y-8">
+          @for (education of filteredEducations(); track trackEducation($index, education); let i = $index) {
+            <div class="flex items-start group">
+            
+              <!-- Timeline Dot -->
+              <div class="relative flex-shrink-0 mr-6">
+                <div class="w-16 h-16 rounded-full border-4 border-white bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center text-white text-lg font-semibold shadow-medium">
+                  <i [class]="getEducationIcon(education.type)"></i>
+                </div>
+              </div>
+
+              <!-- Education Card -->
+              <div class="flex-1 bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-soft hover:shadow-medium transition-all duration-300">
+                
+                <!-- Card Header -->
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                  <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">{{ education.institution }}</h3>
+                    <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+                      <span class="flex items-center gap-1">
+                        <i class="fas fa-map-marker-alt text-blue-500"></i>
+                        {{ education.location }}
+                      </span>
+                      <span class="flex items-center gap-1">
+                        <i class="fas fa-calendar text-purple-500"></i>
+                        {{ education.period }}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border"
+                       [class]="education.type === 'university' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                                'bg-purple-50 text-purple-700 border-purple-200'">
+                    {{ getEducationLabel(education.type) }}
+                  </div>
+                </div>
+
+                <!-- Card Body -->
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-2">{{ education.degree }}</h4>
+                  
+                  @if (education.mention) {
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-yellow-50 text-yellow-700 border border-yellow-200 rounded-full text-sm font-medium mb-3">
+                      <i class="fas fa-award"></i>
+                      {{ education.mention }}
+                    </div>
+                  }
+                  
+                  @if (education.description) {
+                    <p class="text-gray-600 leading-relaxed">
+                      {{ education.description }}
+                    </p>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+</section>

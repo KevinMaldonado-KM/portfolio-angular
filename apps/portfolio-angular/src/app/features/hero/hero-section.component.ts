@@ -29,4 +29,17 @@ export class HeroSectionComponent {
   downloadCV(): void {
     this.heroService.downloadCV();
   }
+
+  /**
+   * Navigate vers la section projets avec un scroll smooth
+   */
+  scrollToProjects(): void {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
 }

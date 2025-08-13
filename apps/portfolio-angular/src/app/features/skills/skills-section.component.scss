@@ -1,0 +1,46 @@
+/* Skills Section Styles */
+
+.skill-bar {
+  animation: fillBar 2s ease-out forwards;
+}
+
+@keyframes fillBar {
+  from { width: 0%; }
+}
+
+/* Category Cards */
+.skills-category-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  align-self: start; /* Force la carte à garder sa taille naturelle */
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Skills List Container */
+.skills-list-container {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  
+  &.expanded {
+    max-height: 2000px; /* Grande valeur pour permettre l'expansion complète */
+    opacity: 1;
+  }
+  
+  &.collapsed {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+/* Individual Skill Items */
+.skill-item {
+  transition: all 0.2s ease-out;
+  
+  &:hover {
+    transform: translateX(4px);
+    background-color: rgba(59, 130, 246, 0.05);
+  }
+}

@@ -3,7 +3,7 @@ export interface AboutStat {
   label: string;
   description: string;
   isDynamic?: boolean;
-  source?: 'experience' | 'projects' | 'technologies' | 'certifications';
+  source?: 'experience' | 'projects' | 'technologies' | 'certifications' | 'skills';
 }
 
 export interface AboutStatsConfig {
@@ -12,7 +12,7 @@ export interface AboutStatsConfig {
     description: string;
     fallbackValue: string;
     isDynamic: boolean;
-    source?: 'experience' | 'projects' | 'technologies' | 'certifications';
+    source?: 'experience' | 'projects' | 'technologies' | 'certifications' | 'skills';
     formatter?: (value: number) => string;
   };
 }

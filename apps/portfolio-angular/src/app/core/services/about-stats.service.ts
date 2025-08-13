@@ -1,5 +1,6 @@
 import { Injectable, inject, computed } from '@angular/core';
 import { ExperienceStatsService } from './experience-stats.service';
+import { EducationService } from './education.service';
 import { AboutStat } from '../models/about-stats.model';
 import { ABOUT_STATS_CONFIG } from '../data/about-stats.data';
 
@@ -8,22 +9,30 @@ import { ABOUT_STATS_CONFIG } from '../data/about-stats.data';
 })
 export class AboutStatsService {
   private readonly experienceStatsService = inject(ExperienceStatsService);
+  private readonly educationService = inject(EducationService);
 
   // Statistiques dynamiques calculées
   readonly stats = computed((): AboutStat[] => {
     const experienceStats = this.experienceStatsService.stats();
-    
-    return Object.entries(ABOUT_STATS_CONFIG).map(([key, config]) => {
+    const certificationStats = this.educationService.certificationStats();
+
+    return Object.entries(ABOUT_STATS_CONFIG).map(([, config]) => {
       let value = config.fallbackValue;
       let description = config.description;
 
       // Calcul des valeurs dynamiques
-      if (config.isDynamic && config.source === 'experience') {
-        switch (key) {
+      if (config.isDynamic) {
+        switch (config.source) {
           case 'experience': {
             const years = experienceStats.yearsOfExperience;
             value = config.formatter ? config.formatter(years) : `${years}+`;
             description = `${years} années d'expérience professionnelle`;
+            break;
+          }
+          case 'certifications': {
+            const certCount = certificationStats.totalCertifications;
+            value = config.formatter ? config.formatter(certCount) : `${certCount}+`;
+            description = `${certCount} certifications professionnelles obtenues`;
             break;
           }
         }

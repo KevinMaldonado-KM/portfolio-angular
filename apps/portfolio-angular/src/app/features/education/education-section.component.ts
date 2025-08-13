@@ -2,6 +2,7 @@ import { Component, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EducationService } from '../../core/services/education.service';
 import { Education, EducationType } from '../../core/models/education.model';
+import { CertificationsComponent } from './certifications/certifications.component';
 
 interface StatCard {
   icon: string;
@@ -12,7 +13,7 @@ interface StatCard {
 @Component({
   selector: 'app-education-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CertificationsComponent],
   templateUrl: './education-section.component.html',
   styleUrl: './education-section.component.scss'
 })

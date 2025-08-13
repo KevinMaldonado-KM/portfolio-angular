@@ -1,4 +1,4 @@
-import { Education, EducationType, EducationTypeConfig } from '../models/education.model';
+import { Education, Certification, EducationType, EducationTypeConfig } from '../models/education.model';
 
 export const EDUCATION_DATA: Education[] = [
   {
@@ -37,6 +37,17 @@ export const EDUCATION_DATA: Education[] = [
     description: 'Participation à des projets technologiques de fin d\'année en électronique embarquée.',
     type: 'secondary',
     level: 'baccalaureate'
+  }
+];
+
+export const CERTIFICATIONS_DATA: Certification[] = [
+  {
+    name: 'Angular – The Complete Guide (2025 Edition)',
+    provider: 'Udemy',
+    date: '08/2025',
+    description: 'Formation complète sur le framework Angular et son écosystème moderne, couvrant tous les aspects du développement avec Angular.',
+    certificateUrl: 'https://www.udemy.com/certificate/UC-97d8de4d-845d-48f4-be05-a237a6ab7d58',
+    skills: ['Angular', 'TypeScript', 'RxJS', 'Angular CLI', 'Services', 'Modules', 'Signals']
   }
 ];
 

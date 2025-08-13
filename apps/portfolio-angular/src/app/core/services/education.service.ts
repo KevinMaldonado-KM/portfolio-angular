@@ -1,6 +1,6 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { Education, EducationType } from '../models/education.model';
-import { EDUCATION_DATA, EDUCATION_TYPE_CONFIGS } from '../data/education.data';
+import { Education, Certification, EducationType, CertificationStats } from '../models/education.model';
+import { EDUCATION_DATA, CERTIFICATIONS_DATA, EDUCATION_TYPE_CONFIGS } from '../data/education.data';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +9,11 @@ export class EducationService {
   
   // Signals pour les données reactives
   private readonly educations = signal<Education[]>(EDUCATION_DATA);
+  private readonly certifications = signal<Certification[]>(CERTIFICATIONS_DATA);
 
   // Propriétés computed pour l'exposition publique
   readonly allEducations = computed(() => this.educations());
+  readonly allCertifications = computed(() => this.certifications());
   
   // Computed pour des données dérivées
   readonly educationsByType = computed(() => {
@@ -33,6 +35,29 @@ export class EducationService {
   readonly latestEducation = computed(() => {
     const educations = this.educations();
     return educations.length > 0 ? educations[0] : null;
+  });
+
+  readonly latestCertification = computed(() => {
+    const certifications = this.certifications();
+    return certifications.length > 0 ? certifications[0] : null;
+  });
+
+  // Statistiques des certifications
+  readonly certificationStats = computed((): CertificationStats => {
+    const certifications = this.certifications();
+    const providers = new Set(certifications.map(cert => cert.provider));
+    
+    const now = new Date();
+    const activeCertifications = certifications.filter(cert => {
+      if (!cert.validUntil) return true;
+      return new Date(cert.validUntil) > now;
+    });
+
+    return {
+      totalCertifications: certifications.length,
+      activeCertifications: activeCertifications.length,
+      providers: providers.size
+    };
   });
 
   /**
@@ -76,10 +101,29 @@ export class EducationService {
   }
 
   /**
+   * Recherche des certifications par mot-clé
+   */
+  searchCertifications(keyword: string): Certification[] {
+    const lowerKeyword = keyword.toLowerCase();
+    return this.certifications().filter(cert => 
+      cert.name.toLowerCase().includes(lowerKeyword) ||
+      cert.provider.toLowerCase().includes(lowerKeyword) ||
+      (cert.skills && cert.skills.some(skill => skill.toLowerCase().includes(lowerKeyword)))
+    );
+  }
+
+  /**
    * Ajoute une nouvelle éducation
    */
   addEducation(education: Education): void {
     this.educations.update(current => [education, ...current]);
+  }
+
+  /**
+   * Ajoute une nouvelle certification
+   */
+  addCertification(certification: Certification): void {
+    this.certifications.update(current => [certification, ...current]);
   }
 
 }

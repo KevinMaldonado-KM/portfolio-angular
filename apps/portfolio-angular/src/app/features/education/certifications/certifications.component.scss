@@ -1,0 +1,153 @@
+/* Certifications Component Styles - Harmonisé avec le design global */
+
+:host {
+  display: block;
+}
+
+/* ===== CLASSES UTILITAIRES ===== */
+.shadow-soft {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-medium {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== ANIMATIONS D'ENTRÉE ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animations pour les cartes */
+.certification-card {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.certification-stat {
+  animation: scaleIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+/* Délais d'animation */
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-500 { animation-delay: 500ms; }
+.animation-delay-600 { animation-delay: 600ms; }
+
+/* ===== HOVER EFFECTS ===== */
+.certification-card:hover {
+  transform: translateY(-4px);
+}
+
+.certification-card:hover .cert-icon {
+  transform: scale(1.1);
+}
+
+/* ===== SKILL TAGS ===== */
+.skill-tag {
+  transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== SKILL EXPANSION BUTTON ===== */
+.skills-expand-btn {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.skills-expand-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.skills-expand-btn:active {
+  transform: translateY(0);
+}
+
+.skills-expand-btn i {
+  transition: transform 0.2s ease;
+}
+
+.skills-expand-btn:hover i {
+  transform: scale(1.1);
+}
+
+/* ===== ANIMATION POUR L'EXPANSION ===== */
+@keyframes skillsExpand {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.skill-tag-new {
+  animation: skillsExpand 0.3s ease-out forwards;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .certification-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== FOCUS STATES POUR L'ACCESSIBILITÉ ===== */
+.certification-link:focus {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+/* ===== LOADING STATE ===== */
+.certification-skeleton {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

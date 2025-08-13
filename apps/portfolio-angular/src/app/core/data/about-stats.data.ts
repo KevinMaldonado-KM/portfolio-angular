@@ -25,6 +25,8 @@ export const ABOUT_STATS_CONFIG: AboutStatsConfig = {
     label: 'Certifications obtenues',
     description: 'Formation continue',
     fallbackValue: '1',
-    isDynamic: false, // Pour l'instant statique
+    isDynamic: true,
+    source: 'certifications',
+    formatter: (value: number) => value > 0 ? `${value}` : '0'
   }
 };

@@ -3,23 +3,27 @@ import { RouterModule } from '@angular/router';
 
 // Components
 import { NavigationComponent } from './shared/navigation/navigation.component';
+import { FooterComponent } from './shared/footer/footer.component';
 import { HeroSectionComponent } from './features/hero/hero-section.component';
 import { AboutSectionComponent } from './features/about/about-section.component';
 import { ExperienceSectionComponent } from './features/experience/experience-section.component';
 import { EducationSectionComponent } from './features/education/education-section.component';
 import { SkillsSectionComponent } from './features/skills/skills-section.component';
 import { ProjectsSectionComponent } from './features/projects/projects-section.component';
+import { ContactSectionComponent } from './features/contact/contact-section.component';
 
 @Component({
   imports: [
     RouterModule,
     NavigationComponent,
+    FooterComponent,
     HeroSectionComponent,
     AboutSectionComponent,
     ExperienceSectionComponent,
     EducationSectionComponent,
     SkillsSectionComponent,
     ProjectsSectionComponent,
+    ContactSectionComponent
   ],
   selector: 'app-root',
   templateUrl: './app.html',

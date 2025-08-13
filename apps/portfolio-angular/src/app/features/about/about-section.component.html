@@ -1,9 +1,9 @@
-<section id="about" class="py-20 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30">
+<section id="about" class="py-20 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Header -->
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
         À Propos de <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Moi</span>
       </h2>
       <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8"></div>
@@ -15,7 +15,7 @@
       <div class="space-y-8">
         
         <!-- Profile Card -->
-        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300">
           <div class="flex items-start space-x-6">
             <div class="relative">
               <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
@@ -27,9 +27,9 @@
               </div>
             </div>
             <div class="flex-1">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">{{ personalInfo().name }}</h3>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ personalInfo().name }}</h3>
               <p class="text-blue-600 font-semibold mb-3">{{ personalInfo().title }}</p>
-              <p class="text-gray-600 leading-relaxed">
+              <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
                 {{ personalInfo().description }}
               </p>
             </div>
@@ -39,11 +39,11 @@
         <!-- Quick Stats -->
         <div class="grid grid-cols-2 gap-4">
           @for (stat of quickStats(); track stat.label) {
-            <div class="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 group">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 group border border-gray-100 dark:border-gray-700">
               <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
                 {{ stat.value }}
               </div>
-              <div class="text-gray-600 text-sm font-medium">{{ stat.label }}</div>
+              <div class="text-gray-600 dark:text-gray-400 text-sm font-medium">{{ stat.label }}</div>
             </div>
           }
         </div>
@@ -53,12 +53,12 @@
       <div class="space-y-8">
         
         <!-- My Story -->
-        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300">
-          <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
             <div class="w-2 h-6 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full mr-3"></div>
             {{ story().title }}
           </h3>
-          <div class="space-y-4 text-gray-600 leading-relaxed">
+          <div class="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
             @for (paragraph of story().paragraphs; track $index) {
               <p>{{ paragraph }}</p>
             }
@@ -66,8 +66,8 @@
         </div>
 
         <!-- Core Values -->
-        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300">
-          <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
             <div class="w-2 h-6 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full mr-3"></div>
             Mes Valeurs
           </h3>
@@ -77,8 +77,8 @@
                 <div class="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
                   <i [class]="value.icon + ' text-blue-600'"></i>
                 </div>
-                <div class="text-sm font-semibold text-gray-800">{{ value.label }}</div>
-                <div class="text-xs text-gray-500">{{ value.description }}</div>
+                <div class="text-sm font-semibold text-gray-800 dark:text-gray-200">{{ value.label }}</div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">{{ value.description }}</div>
               </div>
             }
           </div>
@@ -94,7 +94,7 @@
           {{ callToAction().description }}
         </p>
         <button 
-          class="bg-white text-blue-600 font-semibold px-8 py-3 rounded-full hover:bg-blue-50 hover:scale-105 transition-all duration-300 shadow-lg"
+          class="bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 font-semibold px-8 py-3 rounded-full hover:bg-blue-50 dark:hover:bg-gray-700 hover:scale-105 transition-all duration-300 shadow-lg"
           (click)="onCallToAction()">
           {{ callToAction().buttonText }}
         </button>

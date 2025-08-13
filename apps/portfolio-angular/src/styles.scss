@@ -18,13 +18,22 @@
   --shadow-large: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-// Global Styles
+// Dark Mode Variables
+.dark {
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-large: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+// Global Styles - Ultra Optimized (NO individual transitions)
 * {
   box-sizing: border-box;
+  /* Removed all individual transitions */
 }
 
 html {
   scroll-behavior: smooth;
+  /* Removed transitions - will be handled globally */
 }
 
 body {
@@ -32,6 +41,13 @@ body {
   line-height: 1.6;
   color: #374151;
   background: #ffffff;
+  /* Removed transitions - will be handled globally */
+}
+
+// Dark Mode Body Styles
+.dark body {
+  color: #f3f4f6;
+  background: #111827;
 }
 
 // Custom Scrollbar
@@ -52,6 +68,19 @@ body {
   background: linear-gradient(45deg, #2563eb, #7c3aed);
 }
 
+// Dark Mode Scrollbar
+.dark ::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #4f46e5, #9333ea);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #4338ca, #7c2d12);
+}
+
 // Utility Classes
 .text-gradient {
   background: var(--primary-gradient);
@@ -63,6 +92,12 @@ body {
 .shadow-soft { box-shadow: var(--shadow-soft); }
 .shadow-medium { box-shadow: var(--shadow-medium); }
 .shadow-large { box-shadow: var(--shadow-large); }
+
+// Disable ALL color/background transitions during theme change
+.theme-changing * {
+  transition: none !important;
+  animation: none !important;
+}
 
 // Animation Classes
 .animate-fade-in {
@@ -118,5 +153,16 @@ body {
 
 ::-moz-selection {
   background-color: #3b82f6;
+  color: white;
+}
+
+// Dark Mode Selection Colors
+.dark ::selection {
+  background-color: #6366f1;
+  color: white;
+}
+
+.dark ::-moz-selection {
+  background-color: #6366f1;
   color: white;
 }

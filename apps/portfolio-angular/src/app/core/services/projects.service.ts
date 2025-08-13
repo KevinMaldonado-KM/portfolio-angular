@@ -169,7 +169,7 @@ export class ProjectsService {
       return baseClasses + ' bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg';
     }
     
-    return baseClasses + ' bg-white text-gray-700 border-2 border-gray-200 hover:border-blue-300 hover:text-blue-600';
+    return baseClasses + ' bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-2 border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400';
   }
 
   // Recherche avancée

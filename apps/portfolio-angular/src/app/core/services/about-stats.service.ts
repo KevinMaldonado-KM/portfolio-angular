@@ -2,6 +2,7 @@ import { Injectable, inject, computed } from '@angular/core';
 import { ExperienceStatsService } from './experience-stats.service';
 import { EducationService } from './education.service';
 import { SkillsService } from './skills.service';
+import { ProjectsService } from './projects.service';
 import { AboutStat } from '../models/about-stats.model';
 import { ABOUT_STATS_CONFIG } from '../data/about-stats.data';
 
@@ -12,12 +13,14 @@ export class AboutStatsService {
   private readonly experienceStatsService = inject(ExperienceStatsService);
   private readonly educationService = inject(EducationService);
   private readonly skillsService = inject(SkillsService);
+  private readonly projectsService = inject(ProjectsService);
 
   // Statistiques dynamiques calculées
   readonly stats = computed((): AboutStat[] => {
     const experienceStats = this.experienceStatsService.stats();
     const certificationStats = this.educationService.certificationStats();
     const skillsStats = this.skillsService.globalStats();
+    const projectsStats = this.projectsService.globalStats();
 
     return Object.entries(ABOUT_STATS_CONFIG).map(([, config]) => {
       let value = config.fallbackValue;
@@ -42,6 +45,12 @@ export class AboutStatsService {
             const skillCount = skillsStats.totalSkills;
             value = config.formatter ? config.formatter(skillCount) : `${skillCount}+`;
             description = `${skillCount} technologies et frameworks maîtrisés`;
+            break;
+          }
+          case 'projects': {
+            const projectCount = projectsStats.totalProjects;
+            value = config.formatter ? config.formatter(projectCount) : `${projectCount}+`;
+            description = `${projectCount} projets réalisés avec succès`;
             break;
           }
         }

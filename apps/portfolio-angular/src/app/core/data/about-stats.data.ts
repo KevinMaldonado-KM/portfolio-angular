@@ -10,10 +10,16 @@ export const ABOUT_STATS_CONFIG: AboutStatsConfig = {
     formatter: (value: number) => value > 0 ? `${value}+` : '1+'
   },
   'projects': {
-    label: 'Projets scolaires/professionnels',
+    label: 'Projets réalisés avec succès',
     description: 'Projets réalisés avec succès',
     fallbackValue: '10+',
-    isDynamic: false, // Pour l'instant statique
+    isDynamic: true,
+    source: 'projects',
+    formatter: (value: number) => {
+      // Calcul avec modulo 5 pour avoir des nombres ronds + X
+      const roundedDown = Math.floor(value / 5) * 5;
+      return roundedDown > 0 ? `${roundedDown}+` : '5+';
+    }
   },
   'technologies': {
     label: 'Compétences maîtrisées',

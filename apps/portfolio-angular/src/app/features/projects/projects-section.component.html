@@ -1,0 +1,249 @@
+<section id="projects" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        Mes <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Projets</span>
+      </h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8"></div>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Découvrez mon parcours à travers mes projets académiques et personnels, de l'apprentissage aux réalisations avancées
+      </p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      @for (category of categories; track category) {
+        <button (click)="setActiveFilter(category)"
+                [class]="getFilterButtonClasses(category)"
+                class="px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105">
+          {{ category }}
+        </button>
+      }
+    </div>
+
+    <!-- Projects Condensed Grid -->
+    <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
+      @for (project of filteredProjects(); track project.id; let i = $index) {
+        <div class="project-card group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+             [style.animation-delay]="(i * 100) + 'ms'">
+          
+          <div class="project-content">
+            <!-- Left Side: Compact Info -->
+            <div class="project-main">
+              <!-- Project Header -->
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-2">
+                  <h3 class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
+                    {{ project.title }}
+                  </h3>
+                  @if (project.featured) {
+                    <span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-2 py-1 rounded-full text-xs font-bold">
+                      ⭐
+                    </span>
+                  }
+                </div>
+                
+                <!-- Institution & Period (condensed) -->
+                <div class="flex items-center gap-3 text-sm text-gray-600 mb-3">
+                  <span class="flex items-center gap-1">
+                    {{ getProjectTypeIcon(project.type) }}
+                    {{ getInstitutionShortName(project.institution) }}
+                  </span>
+                  <span class="text-gray-400">•</span>
+                  <span>{{ project.period }}</span>
+                  @if (project.teamSize && project.teamSize > 1) {
+                    <span class="text-gray-400">•</span>
+                    <span class="flex items-center gap-1">
+                      <i class="fas fa-users text-xs"></i>
+                      {{ project.teamSize }}
+                    </span>
+                  }
+                </div>
+                
+                <!-- Description (condensed) -->
+                <p class="text-gray-600 text-sm mb-3 line-clamp-2 leading-relaxed">
+                  {{ project.description }}
+                </p>
+
+                <!-- Technologies (first 4 only) -->
+                <div class="flex flex-wrap gap-1 mb-3">
+                  @for (tech of project.technologies.slice(0, 4); track tech) {
+                    <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-md text-xs font-medium hover:bg-blue-200 transition-colors duration-200 tech-tag">
+                      {{ tech }}
+                    </span>
+                  }
+                  @if (project.technologies.length > 4) {
+                    <button (click)="openProjectModal(project)" 
+                            class="tech-more px-2 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-medium hover:bg-gray-200">
+                      +{{ project.technologies.length - 4 }} plus
+                    </button>
+                  }
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="flex gap-2 mt-auto">
+                @if (project.githubUrl) {
+                  <a [href]="project.githubUrl" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     class="p-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200 action-button">
+                    <i class="fab fa-github text-sm"></i>
+                  </a>
+                }
+                @if (project.demoUrl) {
+                  <a [href]="project.demoUrl" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 action-button">
+                    <i class="fas fa-external-link-alt text-sm"></i>
+                  </a>
+                }
+                <button (click)="openProjectModal(project)"
+                        class="p-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-200 action-button">
+                  <i class="fas fa-info-circle text-sm"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Side: Visual Info -->
+            <div class="project-sidebar bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+              <!-- Project Type Icon -->
+              <div class="text-4xl mb-2 opacity-90">
+                {{ getProjectTypeIcon(project.type) }}
+              </div>
+              
+              <!-- Type & Level -->
+              <div class="text-center">
+                <div class="text-sm font-medium opacity-90 mb-1">
+                  {{ getProjectTypeLabel(project.type) }}
+                </div>
+                <span class="px-2 py-1 rounded-full text-xs font-medium bg-white/20 text-white border border-white/30">
+                  {{ getLevelLabel(project.level) }}
+                </span>
+              </div>
+
+              <!-- Decorative -->
+              <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-white/10 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Project Detail Modal -->
+  @if (isModalOpen()) {
+    <div class="project-modal-overlay" 
+         (click)="closeProjectModal()" 
+         (keydown.escape)="closeProjectModal()"
+         tabindex="0">
+      <div class="project-modal" 
+           (click)="$event.stopPropagation()"
+           (keydown)="$event.stopPropagation()"
+           role="dialog"
+           aria-modal="true"
+           tabindex="-1">
+        @if (selectedProject(); as project) {
+          <!-- Modal Header -->
+          <div class="project-modal-header">
+            <button class="close-btn" (click)="closeProjectModal()">
+              <i class="fas fa-times"></i>
+            </button>
+            <div class="flex items-center gap-3 mb-2">
+              <div class="text-3xl">{{ getProjectTypeIcon(project.type) }}</div>
+              <div>
+                <h2 class="text-2xl font-bold">{{ project.title }}</h2>
+                <div class="flex items-center gap-2 text-sm opacity-90">
+                  <span>{{ project.institution }}</span>
+                  <span>•</span>
+                  <span>{{ project.period }}</span>
+                  @if (project.teamSize && project.teamSize > 1) {
+                    <span>•</span>
+                    <span class="flex items-center gap-1">
+                      <i class="fas fa-users"></i>
+                      {{ project.teamSize }} membres
+                    </span>
+                  }
+                </div>
+              </div>
+            </div>
+            @if (project.featured) {
+              <span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-3 py-1 rounded-full text-sm font-bold">
+                ⭐ Projet phare
+              </span>
+            }
+          </div>
+
+          <!-- Modal Body -->
+          <div class="project-modal-body">
+            <!-- Description complète -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                <i class="fas fa-file-alt text-blue-600 mr-2"></i>
+                Description
+              </h3>
+              <p class="text-gray-700 leading-relaxed">{{ project.description }}</p>
+            </div>
+
+            <!-- Toutes les technologies -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                <i class="fas fa-code text-blue-600 mr-2"></i>
+                Technologies utilisées
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                @for (tech of project.technologies; track tech) {
+                  <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium">
+                    {{ tech }}
+                  </span>
+                }
+              </div>
+            </div>
+
+            <!-- Type et niveau -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+              <div>
+                <h4 class="font-semibold text-gray-700 mb-2">Type de projet</h4>
+                <span class="inline-flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg text-sm">
+                  {{ getProjectTypeIcon(project.type) }}
+                  {{ getProjectTypeLabel(project.type) }}
+                </span>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 mb-2">Niveau</h4>
+                <span [class]="'inline-block px-3 py-2 rounded-lg text-sm font-medium ' + getLevelBadgeClasses(project.level)">
+                  {{ getLevelLabel(project.level) }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex gap-3 pt-4 border-t border-gray-200">
+              @if (project.githubUrl) {
+                <a [href]="project.githubUrl" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                  <i class="fab fa-github"></i>
+                  Voir le code
+                </a>
+              }
+              @if (project.demoUrl) {
+                <a [href]="project.demoUrl" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                  <i class="fas fa-external-link-alt"></i>
+                  Voir la démo
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</section>

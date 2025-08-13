@@ -8,6 +8,7 @@ import { AboutSectionComponent } from './features/about/about-section.component'
 import { ExperienceSectionComponent } from './features/experience/experience-section.component';
 import { EducationSectionComponent } from './features/education/education-section.component';
 import { SkillsSectionComponent } from './features/skills/skills-section.component';
+import { ProjectsSectionComponent } from './features/projects/projects-section.component';
 
 @Component({
   imports: [
@@ -18,6 +19,7 @@ import { SkillsSectionComponent } from './features/skills/skills-section.compone
     ExperienceSectionComponent,
     EducationSectionComponent,
     SkillsSectionComponent,
+    ProjectsSectionComponent,
   ],
   selector: 'app-root',
   templateUrl: './app.html',

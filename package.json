@@ -2,7 +2,12 @@
   "name": "@portfolio-angular/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "npx nx build portfolio-angular --configuration=production",
+    "start": "npx nx serve portfolio-angular",
+    "dev": "npx nx serve portfolio-angular",
+    "preview": "npx nx preview portfolio-angular"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~20.1.0",

@@ -80,6 +80,23 @@
             placeholder="Décrivez votre demande, votre projet ou posez vos questions..."></textarea>
         </div>
 
+        <!-- reCAPTCHA -->
+        <div class="flex justify-center">
+          <div id="recaptcha-element" #recaptchaElement class="g-recaptcha-container">
+            <!-- Le reCAPTCHA sera injecté ici -->
+          </div>
+        </div>
+
+        <!-- Messages d'erreur -->
+        @if (errorMessage()) {
+          <div class="text-center p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+            <p class="text-sm text-red-700 dark:text-red-300">
+              <i class="fas fa-exclamation-triangle mr-2"></i>
+              {{ errorMessage() }}
+            </p>
+          </div>
+        }
+
         <!-- Submit Button -->
         <div class="text-center">
           <button 

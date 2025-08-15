@@ -26,3 +26,72 @@ input:focus, textarea:focus {
 button:hover:not(:disabled) {
   transform: translateY(-2px);
 }
+
+/* reCAPTCHA Styles */
+.g-recaptcha-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  
+  /* Responsive reCAPTCHA */
+  @media (max-width: 768px) {
+    transform: scale(0.9);
+    transform-origin: center;
+  }
+  
+  @media (max-width: 480px) {
+    transform: scale(0.8);
+    transform-origin: center;
+  }
+}
+
+/* Amélioration du thème sombre pour reCAPTCHA */
+:host-context(.dark) .g-recaptcha-container {
+  filter: invert(1) hue-rotate(180deg);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Animation d'apparition pour les messages d'erreur */
+.error-message {
+  animation: fadeInDown 0.3s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Styles pour les différents états du bouton */
+.submit-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &.loading {
+    pointer-events: none;
+    
+    .spinner {
+      animation: spin 1s linear infinite;
+    }
+  }
+  
+  &.success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

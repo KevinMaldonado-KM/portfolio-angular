@@ -1,12 +1,7 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, OnInit, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-interface ContactForm {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
+import { EmailService, ContactFormData } from '../../core/services/email.service';
+import { RecaptchaService } from '../../core/services/recaptcha.service';
 
 @Component({
   selector: 'app-contact-section',
@@ -15,34 +10,106 @@ interface ContactForm {
   styleUrl: './contact-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactSectionComponent {
+export class ContactSectionComponent implements OnInit {
+  
+  private emailService = inject(EmailService);
+  private recaptchaService = inject(RecaptchaService);
+  
+  @ViewChild('recaptchaElement', { static: false }) recaptchaElement!: ElementRef;
   
   isSubmitting = signal(false);
   isSubmitted = signal(false);
+  errorMessage = signal('');
+  recaptchaWidgetId: number | null = null;
 
-  formData: ContactForm = {
+  formData: ContactFormData = {
     name: '',
     email: '',
     subject: '',
     message: ''
   };
 
-  onSubmit(): void {
+  ngOnInit(): void {
+    // Le reCAPTCHA sera initialisé après le rendu du composant
+    setTimeout(() => this.initializeRecaptcha(), 1000);
+  }
+
+  private async initializeRecaptcha(): Promise<void> {
+    try {
+      if (this.recaptchaElement?.nativeElement) {
+        this.recaptchaWidgetId = await this.recaptchaService.renderRecaptcha(
+          this.recaptchaElement.nativeElement.id
+        );
+      }
+    } catch (error) {
+      console.error('Erreur lors de l\'initialisation du reCAPTCHA:', error);
+      this.errorMessage.set('Erreur lors du chargement du captcha. Veuillez rafraîchir la page.');
+    }
+  }
+
+  async onSubmit(): Promise<void> {
     if (this.isSubmitting() || this.isSubmitted()) return;
+
+    // Reset des messages d'erreur
+    this.errorMessage.set('');
+
+    // Validation des champs
+    if (!this.validateForm()) {
+      this.errorMessage.set('Veuillez remplir tous les champs obligatoires.');
+      return;
+    }
+
+    // Validation du reCAPTCHA
+    const recaptchaResponse = this.recaptchaService.getRecaptchaResponse(this.recaptchaWidgetId || undefined);
+    if (!recaptchaResponse) {
+      this.errorMessage.set('Veuillez valider le captcha.');
+      return;
+    }
 
     this.isSubmitting.set(true);
 
-    // Simulation d'envoi (remplacer par vraie logique)
-    setTimeout(() => {
-      this.isSubmitting.set(false);
-      this.isSubmitted.set(true);
-      
-      // Reset form after success
-      setTimeout(() => {
-        this.isSubmitted.set(false);
+    try {
+      // Nettoyage des données
+      const cleanFormData: ContactFormData = {
+        name: this.emailService.sanitizeInput(this.formData.name),
+        email: this.emailService.sanitizeInput(this.formData.email),
+        subject: this.emailService.sanitizeInput(this.formData.subject),
+        message: this.emailService.sanitizeInput(this.formData.message),
+        'g-recaptcha-response': recaptchaResponse
+      };
+
+      // Envoi de l'email
+      const success = await this.emailService.sendEmail(cleanFormData);
+
+      if (success) {
+        this.isSubmitted.set(true);
         this.resetForm();
-      }, 3000);
-    }, 2000);
+        
+        // Reset automatique après 5 secondes
+        setTimeout(() => {
+          this.isSubmitted.set(false);
+        }, 5000);
+      } else {
+        this.errorMessage.set('Erreur lors de l\'envoi du message. Veuillez réessayer.');
+      }
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi:', error);
+      this.errorMessage.set('Une erreur inattendue s\'est produite. Veuillez réessayer.');
+    } finally {
+      this.isSubmitting.set(false);
+      // Reset du reCAPTCHA
+      this.recaptchaService.resetRecaptcha(this.recaptchaWidgetId || undefined);
+    }
+  }
+
+  private validateForm(): boolean {
+    return !!(
+      this.formData.name.trim() &&
+      this.formData.email.trim() &&
+      this.emailService.isValidEmail(this.formData.email) &&
+      this.formData.subject.trim() &&
+      this.formData.message.trim()
+    );
   }
 
   getSubmitButtonClasses(): string {

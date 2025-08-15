@@ -1,82 +1,199 @@
-# PortfolioAngular
+# 🌟 Portfolio Kevin Maldonado - Développeur Full Stack
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+<div align="center">
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+![Portfolio Banner](https://via.placeholder.com/800x200/667eea/ffffff?text=Kevin+Maldonado+-+Full+Stack+Developer)
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-kevinmaldonado.dev-blue?style=for-the-badge)](https://kevinmaldonado.dev)
+[![Angular](https://img.shields.io/badge/Angular-20-red?style=for-the-badge&logo=angular)](https://angular.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![Nx](https://img.shields.io/badge/Nx-21.3-143055?style=for-the-badge&logo=nx)](https://nx.dev/)
 
-## Finish your CI setup
+</div>
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/VEanXZEuc3)
+## 📖 À propos du projet
 
+Ce portfolio moderne et responsive présente mon parcours, mes compétences et mes réalisations en tant que **développeur full stack**. Conçu avec les dernières technologies web, il démontre ma maîtrise des frameworks modernes et mon attention aux détails.
 
-## Run tasks
+### 🎯 **Objectifs du portfolio**
+- Présenter mon expertise technique de manière interactive
+- Démontrer mes compétences en développement frontend et backend
+- Offrir une expérience utilisateur exceptionnelle
+- Faciliter la prise de contact avec les recruteurs et clients
 
-To run the dev server for your app, use:
+## 🚀 **Démonstration en ligne**
 
-```sh
-npx nx serve portfolio-angular
+**🌐 [kevinmaldonado.dev](https://kevinmaldonado.dev)**
+
+*Explorez mon portfolio complet avec des animations fluides, un design responsive et une architecture moderne.*
+
+## 🛠️ **Stack Technique**
+
+### **Frontend**
+- **Angular 20** - Framework principal avec signals et standalone components
+- **TypeScript 5.6** - Développement typé et robuste
+- **Tailwind CSS 3.4** - Design system moderne et responsive
+- **SCSS** - Styles avancés et animations personnalisées
+- **RxJS** - Programmation réactive et gestion d'état
+
+### **Architecture & Outillage**
+- **Nx 21.3** - Monorepo et outils de développement
+- **ESLint** - Qualité du code et standards
+
+### **Fonctionnalités avancées**
+- **EmailJS** - Système de contact fonctionnel
+- **reCAPTCHA v2** - Protection anti-spam
+- **Animations CSS** - Transitions fluides et micro-interactions
+- **Dark/Light Mode** - Thème adaptatif
+- **PWA Ready** - Optimisé pour les performances
+
+### **Déploiement & DevOps**
+- **Netlify** - Hébergement et déploiement continu
+- **DNS Custom** - Domaine personnalisé kevinmaldonado.dev
+- **SSL/HTTPS** - Sécurité et performance optimisées
+
+## 📱 **Fonctionnalités**
+
+### 🎨 **Design & UX/UI**
+- ✅ **Design responsive** - Optimisé mobile-first
+- ✅ **Mode sombre/clair** - Préférence utilisateur sauvegardée
+- ✅ **Animations fluides** - Micro-interactions et transitions
+- ✅ **Glassmorphism** - Effets visuels modernes
+- ✅ **Typographie soignée** - Hiérarchie visuelle claire
+
+### 🚀 **Performance & SEO**
+- ✅ **Lazy Loading** - Chargement optimisé des composants
+- ✅ **Meta Tags** - SEO et réseaux sociaux optimisés
+- ✅ **Lighthouse Score 95+** - Performance web excellente
+- ✅ **Bundle optimisé** - Code splitting et tree-shaking
+
+### 📧 **Contact Fonctionnel**
+- ✅ **EmailJS intégré** - Envoi direct vers kevin.maldonado0909@gmail.com
+- ✅ **reCAPTCHA protection** - Anti-spam et sécurité
+- ✅ **Validation en temps réel** - UX optimisée
+- ✅ **Templates d'email** - Communication professionnelle
+
+### 📊 **Sections Portfolio**
+- ✅ **Hero Section** - Présentation et CTA
+- ✅ **À propos** - Parcours et vision
+- ✅ **Expériences** - Timeline interactive
+- ✅ **Compétences** - Technologies maîtrisées
+- ✅ **Projets** - Réalisations avec détails
+- ✅ **Formation** - Parcours académique
+- ✅ **Contact** - Formulaire fonctionnel
+
+## 🏗️ **Architecture du projet**
+
+```
+portfolio-angular/
+├── apps/
+│   └── portfolio-angular/          # Application principale
+│       ├── src/
+│       │   ├── app/
+│       │   │   ├── features/        # Sections du portfolio
+│       │   │   │   ├── hero/        # Section d'accueil
+│       │   │   │   ├── about/       # À propos
+│       │   │   │   ├── experience/  # Expériences
+│       │   │   │   ├── skills/      # Compétences
+│       │   │   │   ├── projects/    # Projets
+│       │   │   │   └── contact/     # Contact
+│       │   │   └── shared/          # Composants partagés
+│       │   │       ├── components/  # Navigation, Footer
+│       │   │       └── services/    # EmailJS, reCAPTCHA
+│       │   ├── environments/        # Configuration
+│       │   └── styles/              # Styles globaux
+│       └── public/                  # Assets statiques
+├── docs/                           # Documentation
+└── deployment/                     # Configuration Netlify
 ```
 
-To create a production bundle:
+## 🚦 **Guide de développement**
 
-```sh
-npx nx build portfolio-angular
+### **Prérequis**
+- Node.js 18+ et npm 9+
+- Angular CLI 20+
+- Git pour le versioning
+
+### **Installation**
+
+```bash
+# Cloner le repository
+git clone https://github.com/KevinMaldonado-KM/portfolio-angular.git
+cd portfolio-angular
+
+# Installer les dépendances
+npm install
+
+# Lancer le serveur de développement
+npm run start
 ```
 
-To see all available targets to run for a project, run:
+### **Scripts disponibles**
 
-```sh
-npx nx show project portfolio-angular
+```bash
+# Développement
+npm run start          # Serveur de dev (http://localhost:4200)
+npm run build          # Build de production
+npm run test           # Tests unitaires avec Jest
+npm run lint           # Analyse statique du code
+
+# Nx commandes
+npx nx serve portfolio-angular    # Serveur de développement
+npx nx build portfolio-angular    # Build de production
+npx nx test portfolio-angular     # Tests unitaires
+npx nx graph                      # Visualisation des dépendances
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+## 🌐 **Déploiement**
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### **Production (Netlify)**
+```bash
+# Build de production
+npm run build
 
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/angular:app demo
+# Déploiement automatique via Netlify
+# Connected à main branch pour CD/CI
 ```
 
-To generate a new library, use:
+### **Configuration Netlify**
+- **Build command**: `npm run build`
+- **Publish directory**: `dist/apps/portfolio-angular/browser`
+- **Domain**: kevinmaldonado.dev
+- **SSL**: Automatique avec Let's Encrypt
 
-```sh
-npx nx g @nx/angular:lib mylib
-```
+## 👨‍💻 **À propos de l'auteur**
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+### **Kevin Maldonado**
+*Développeur Full Stack passionné par les technologies modernes*
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- 🌍 **Localisation**: France
+- 💼 **Statut**: Ouvert aux opportunités
+- 📧 **Contact**: kevin.maldonado0909@gmail.com
+- 🌐 **Portfolio**: [kevinmaldonado.dev](https://kevinmaldonado.dev)
+- 💼 **LinkedIn**: [linkedin.com/in/kevin-maldonado](https://linkedin.com/in/kevin-maldonado-km)
+- 🐙 **GitHub**: [github.com/KevinMaldonado-KM](https://github.com/KevinMaldonado-KM)
 
+### **Expertise technique**
+- **Frontend**: Angular, React, Vue.js, TypeScript, JavaScript
+- **Backend**: Node.js, Express, NestJS, Python, PHP
+- **Base de données**: MySQL, PostgreSQL, MongoDB
+- **DevOps**: Docker, AWS, Netlify, Vercel
+- **Mobile**: Ionic, React Native
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## 📄 **Licence**
 
-## Install Nx Console
+Ce projet est sous licence MIT. Voir [LICENSE](./LICENSE) pour plus de détails.
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+---
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+<div align="center">
 
-## Useful links
+**💼 Intéressé par mon profil ?**
 
-Learn more:
+[![Contact](https://img.shields.io/badge/📧_Me_Contacter-kevin.maldonado0909@gmail.com-blue?style=for-the-badge)](mailto:kevin.maldonado0909@gmail.com)
+[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-kevinmaldonado.dev-purple?style=for-the-badge)](https://kevinmaldonado.dev)
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+*Développeur Full Stack*
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+</div>

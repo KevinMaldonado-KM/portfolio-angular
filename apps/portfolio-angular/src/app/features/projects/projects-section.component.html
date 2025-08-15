@@ -152,26 +152,30 @@
             <button class="close-btn" (click)="closeProjectModal()">
               <i class="fas fa-times"></i>
             </button>
-            <div class="flex items-center gap-3 mb-2">
-              <div class="text-3xl">{{ getProjectTypeIcon(project.type) }}</div>
-              <div>
-                <h2 class="text-2xl font-bold">{{ project.title }}</h2>
-                <div class="flex items-center gap-2 text-sm opacity-90">
-                  <span>{{ project.institution }}</span>
-                  <span>•</span>
-                  <span>{{ project.period }}</span>
+            
+            <!-- Header Content - Responsive Layout -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-2">
+              <div class="text-3xl sm:text-4xl flex-shrink-0">{{ getProjectTypeIcon(project.type) }}</div>
+              <div class="flex-1 min-w-0"> <!-- min-w-0 pour éviter l'overflow -->
+                <h2 class="text-xl sm:text-2xl font-bold leading-tight">{{ project.title }}</h2>
+                <!-- Info condensée sur mobile, étalée sur desktop -->
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-sm opacity-90 mt-1">
+                  <span class="truncate">{{ project.institution }}</span>
+                  <span class="hidden sm:inline">•</span>
+                  <span class="text-xs sm:text-sm">{{ project.period }}</span>
                   @if (project.teamSize && project.teamSize > 1) {
-                    <span>•</span>
-                    <span class="flex items-center gap-1">
+                    <span class="hidden sm:inline">•</span>
+                    <span class="flex items-center gap-1 text-xs sm:text-sm">
                       <i class="fas fa-users"></i>
-                      {{ project.teamSize }} membres
+                      <span class="hidden sm:inline">{{ project.teamSize }} membres</span>
+                      <span class="sm:hidden">{{ project.teamSize }}p</span>
                     </span>
                   }
                 </div>
               </div>
             </div>
             @if (project.featured) {
-              <span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-3 py-1 rounded-full text-sm font-bold">
+              <span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-3 py-1 rounded-full text-sm font-bold inline-block">
                 ⭐ Projet phare
               </span>
             }
@@ -188,56 +192,56 @@
               <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{{ project.description }}</p>
             </div>
 
-            <!-- Toutes les technologies -->
+            <!-- Toutes les technologies - Responsive Grid -->
             <div class="mb-6">
               <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                 <i class="fas fa-code text-blue-600 mr-2"></i>
                 Technologies utilisées
               </h3>
-              <div class="flex flex-wrap gap-2">
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
                 @for (tech of project.technologies; track tech) {
-                  <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-lg text-sm font-medium">
+                  <span class="px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-lg text-sm font-medium text-center transition-transform hover:scale-105">
                     {{ tech }}
                   </span>
                 }
               </div>
             </div>
 
-            <!-- Type et niveau -->
-            <div class="grid grid-cols-2 gap-4 mb-6">
+            <!-- Type et niveau - Responsive Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               <div>
-                <h4 class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Type de projet</h4>
-                <span class="inline-flex items-center gap-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm">
-                  {{ getProjectTypeIcon(project.type) }}
-                  {{ getProjectTypeLabel(project.type) }}
+                <h4 class="font-semibold text-gray-700 dark:text-gray-300 mb-2 text-sm sm:text-base">Type de projet</h4>
+                <span class="inline-flex items-center gap-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm w-full sm:w-auto justify-center sm:justify-start">
+                  <span class="text-lg">{{ getProjectTypeIcon(project.type) }}</span>
+                  <span class="font-medium">{{ getProjectTypeLabel(project.type) }}</span>
                 </span>
               </div>
               <div>
-                <h4 class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Niveau</h4>
-                <span [class]="'inline-block px-3 py-2 rounded-lg text-sm font-medium ' + getLevelBadgeClasses(project.level)">
+                <h4 class="font-semibold text-gray-700 dark:text-gray-300 mb-2 text-sm sm:text-base">Niveau</h4>
+                <span [class]="'inline-block px-3 py-2 rounded-lg text-sm font-medium w-full sm:w-auto text-center sm:text-left ' + getLevelBadgeClasses(project.level)">
                   {{ getLevelLabel(project.level) }}
                 </span>
               </div>
             </div>
 
-            <!-- Actions -->
-            <div class="flex gap-3 pt-4 border-t border-gray-200 dark:border-gray-600">
+            <!-- Actions - Responsive Layout -->
+            <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200 dark:border-gray-600">
               @if (project.githubUrl) {
                 <a [href]="project.githubUrl" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   class="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                   class="flex items-center justify-center gap-2 px-4 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200 font-medium">
                   <i class="fab fa-github"></i>
-                  Voir le code
+                  <span>Voir le code</span>
                 </a>
               }
               @if (project.demoUrl) {
                 <a [href]="project.demoUrl" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                   class="flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium">
                   <i class="fas fa-external-link-alt"></i>
-                  Voir la démo
+                  <span>Voir la démo</span>
                 </a>
               }
             </div>

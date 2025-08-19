@@ -56,7 +56,7 @@ export class RecaptchaService {
           try {
             const widgetId = grecaptcha.render(elementId, {
               sitekey: environment.recaptcha.siteKey,
-              theme: 'light',
+              theme: 'light', // Toujours utiliser le thème clair pour éviter les problèmes d'affichage
               size: 'normal',
               callback: (response: string) => {
                 console.log('reCAPTCHA validé:', response);

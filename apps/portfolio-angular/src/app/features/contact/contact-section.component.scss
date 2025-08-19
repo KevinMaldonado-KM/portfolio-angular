@@ -48,9 +48,11 @@ button:hover:not(:disabled) {
 
 /* Amélioration du thème sombre pour reCAPTCHA */
 :host-context(.dark) .g-recaptcha-container {
-  filter: invert(1) hue-rotate(180deg);
+  /* Suppression du filtre qui causait le carré noir */
+  /* filter: invert(1) hue-rotate(180deg); */
   border-radius: 8px;
   overflow: hidden;
+  background: transparent;
 }
 
 /* Animation d'apparition pour les messages d'erreur */

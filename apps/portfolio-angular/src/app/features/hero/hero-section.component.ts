@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, computed, OnInit } from '@angular/core';
 import { HeroService } from '../../core/services/hero.service';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-hero-section',
@@ -8,10 +9,11 @@ import { HeroService } from '../../core/services/hero.service';
   styleUrl: './hero-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeroSectionComponent {
+export class HeroSectionComponent implements OnInit {
   
-  // Injection du service avec la nouvelle syntaxe inject()
+  // Injection des services avec la nouvelle syntaxe inject()
   private readonly heroService = inject(HeroService);
+  private readonly seoService = inject(SeoService);
 
   // Exposition des signaux computed pour le template
   readonly profile = this.heroService.profile;
@@ -22,6 +24,11 @@ export class HeroSectionComponent {
   // Computed pour des données spécifiques au composant si nécessaire
   readonly avatarInitials = computed(() => this.profile().avatar.initials);
   readonly hasAvatar = computed(() => !!this.profile().avatar.imageUrl);
+
+  ngOnInit(): void {
+    // Optimisation SEO pour la page d'accueil
+    this.seoService.setHomeSeo();
+  }
 
   /**
    * Télécharge le CV via le service

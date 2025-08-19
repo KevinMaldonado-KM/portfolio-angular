@@ -1,11 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <title>portfolio-angular</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Kevin Maldonado - Portfolio Développeur Full Stack | Angular, React, Node.js</title>
+    <meta name="description" content="Portfolio de Kevin Maldonado, développeur full stack expérimenté. Spécialisé en Angular, React, Node.js, TypeScript. Découvrez mes projets et compétences techniques." />
+    <meta name="keywords" content="Kevin Maldonado, portfolio, développeur full stack, Angular, React, Node.js, TypeScript, JavaScript, PHP, Python, développeur web, programmeur, freelance, frontend, backend" />
+    <meta name="author" content="Kevin Maldonado" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    
+    <!-- Geographic and Language Tags -->
+    <meta name="geo.region" content="FR" />
+    <meta name="geo.country" content="France" />
+    <meta name="language" content="French" />
+    <meta name="geo.placename" content="France" />
+    
+    <!-- Technical Meta -->
     <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kevin Maldonado - Portfolio Développeur Full Stack" />
+    <meta property="og:description" content="Découvrez le portfolio de Kevin Maldonado, développeur full stack passionné. Projets en Angular, React, Node.js et plus encore." />
+    <meta property="og:url" content="https://kevinmaldonado.dev" />
+    <meta property="og:site_name" content="Kevin Maldonado Portfolio" />
+    <meta property="og:image" content="https://kevinmaldonado.dev/assets/images/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Kevin Maldonado - Développeur Full Stack Portfolio" />
+    <meta property="og:locale" content="fr_FR" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kevin Maldonado - Portfolio Développeur Full Stack" />
+    <meta name="twitter:description" content="Portfolio de Kevin Maldonado, développeur full stack. Angular, React, Node.js, TypeScript et plus encore." />
+    <meta name="twitter:image" content="https://kevinmaldonado.dev/assets/images/twitter-card.jpg" />
+    <meta name="twitter:image:alt" content="Kevin Maldonado Portfolio" />
+    <meta name="twitter:creator" content="@KevinMaldonado" />
+    <meta name="twitter:site" content="@KevinMaldonado" />
+    
+    <!-- LinkedIn -->
+    <meta property="article:author" content="Kevin Maldonado" />
+    <meta property="profile:first_name" content="Kevin" />
+    <meta property="profile:last_name" content="Maldonado" />
+    <meta property="profile:username" content="kevin-maldonado" />
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#667eea" />
+    <meta name="msapplication-TileColor" content="#667eea" />
+    <meta name="msapplication-navbutton-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://kevinmaldonado.dev" />
+    
+    <!-- DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kevin Maldonado",
+      "jobTitle": "Développeur Full Stack",
+      "description": "Développeur full stack expérimenté spécialisé en Angular, React, Node.js et TypeScript",
+      "url": "https://kevinmaldonado.dev",
+      "email": "kevin.maldonado0909@gmail.com",
+      "telephone": "+33-XXX-XXX-XXX",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "FR",
+        "addressRegion": "France"
+      },
+      "sameAs": [
+        "https://linkedin.com/in/kevin-maldonado",
+        "https://github.com/KevinMaldonado-KM",
+        "https://kevinmaldonado.dev"
+      ],
+      "knowsAbout": [
+        "Angular",
+        "React",
+        "Node.js",
+        "TypeScript",
+        "JavaScript",
+        "PHP",
+        "Python",
+        "Vue.js",
+        "Express.js",
+        "MongoDB",
+        "MySQL",
+        "PostgreSQL",
+        "Docker",
+        "AWS",
+        "Git",
+        "Agile Development"
+      ],
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "Formation Développeur Full Stack"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Freelance"
+      }
+    }
+    </script>
+    
+    <!-- Professional Portfolio Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Kevin Maldonado Portfolio",
+      "description": "Portfolio professionnel de Kevin Maldonado, développeur full stack",
+      "url": "https://kevinmaldonado.dev",
+      "author": {
+        "@type": "Person",
+        "name": "Kevin Maldonado"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://kevinmaldonado.dev?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
   </head>
   <body>
     <app-root></app-root>

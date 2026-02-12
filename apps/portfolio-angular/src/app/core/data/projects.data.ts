@@ -111,7 +111,7 @@ export const PROJECTS_DATA: Project[] = [
     description: 'Réalisation d\'un site vitrine pour un auto-entrepreneur',
     institution: 'InstantSmile Photobooth',
     period: 'janv. 2025',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+    technologies: ['HTML', 'CSS', 'JavaScript', 'PhP', 'Bootstrap', 'SEO'],
     type: 'professional',
     demoUrl: 'https://instantsmile-photobooth.fr',
     featured: false,

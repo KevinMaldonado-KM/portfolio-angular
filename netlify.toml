@@ -3,7 +3,7 @@
   command = "npm run build"
   
   # Répertoire de publication
-  publish = "dist/apps/portfolio-angular"
+  publish = "dist/apps/portfolio-angular/browser"
   
   # Commande d'installation (optionnel, Netlify utilise npm install par défaut)
   # install = "npm install"

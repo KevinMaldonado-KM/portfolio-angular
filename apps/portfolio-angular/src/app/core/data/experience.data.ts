@@ -24,7 +24,7 @@ export const EXPERIENCES_DATA: Experience[] = [
     position: 'Apprenti Développeur Logiciel',
     location: 'Rousset, France',
     period: '09/2024 – 09/2025',
-    current: true,
+    current: false,
     type: 'apprentissage',
     technologies: ['C#', '.NET Framework', '.NET MVC', 'Blazor', 'LINQ', 'JavaScript', 'jQuery', 'Ajax', 'Swagger', 'API REST', 'IoT', 'Pulsar', 'OpenAI', 'n8n', 'PWA', 'Bootstrap', 'JavaScript'],
     achievements: [
